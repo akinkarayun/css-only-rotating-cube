@@ -1,38 +1,105 @@
-.App {
-  text-align: center;
+* {
+  --img-1: url("https://images.unsplash.com/photo-1652417262839-6ab745d743c6?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&h=250");
+  --img-2: url("https://images.unsplash.com/photo-1579829873473-e0c05ecd7a24?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&h=250");
+  --img-3: url("https://images.unsplash.com/photo-1648629629759-db753446e2a3?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&h=250");
+  --img-4: url("https://images.unsplash.com/photo-1652943554721-d3eff3d90011?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&h=250");
+  --img-5: url("https://images.unsplash.com/photo-1635349873880-3134eec0da42?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&h=250");
+  --img-6: url("https://images.unsplash.com/photo-1583561570764-56e1cf9f37d0?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&h=250");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.cube_container {
+  width: 15em;
+  height: 15em;
+  text-align: center;
+  perspective: 45em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(20deg);
+  transition-duration: 2s;
+}
+
+.cube_side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid black;
+  object-fit: contain;
+}
+
+.cube_side:nth-child(1) {
+  transform: rotateY(0deg) translateZ(7.5rem);
+  background-image: var(--img-1);
+}
+
+.cube_side:nth-child(2) {
+  transform: rotateY(90deg) translateZ(7.5rem);
+  background-image: var(--img-2);
+}
+
+.cube_side:nth-child(3) {
+  transform: rotateY(180deg) translateZ(7.5rem);
+  background-image: var(--img-3);
+}
+
+.cube_side:nth-child(4) {
+  transform: rotateY(-90deg) translateZ(7.5rem);
+  background-image: var(--img-4);
+}
+
+.cube_side:nth-child(5) {
+  transform: rotateX(-90deg) translateZ(7.5rem);
+  background-image: var(--img-5);
+}
+
+.cube_side:nth-child(6) {
+  transform: rotateX(90deg) translateZ(7.5rem);
+  background-image: var(--img-6);
+}
+
+.radio_button {
+  margin-bottom: 5rem;
+}
+
+.radio_button:checked ~ .cube {
+  transition-duration: 3s;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.radio_button:nth-child(1):checked ~ .cube {
+  transform: rotateY(-20deg) rotateX(0deg);
+}
+
+.radio_button:nth-child(2):checked ~ .cube {
+  transform: rotateY(-15deg) rotateX(-180deg);
+}
+
+.radio_button:nth-child(3):checked ~ .cube {
+  transform: rotateY(-15deg) rotateX(90deg);
+}
+
+.radio_button:nth-child(4):checked ~ .cube {
+  transform: rotateY(-15deg) rotateX(-90deg);
+}
+
+.radio_button:nth-child(5):checked ~ .cube {
+  transform: rotateY(-105deg) rotateX(0deg);
+}
+
+.radio_button:nth-child(6):checked ~ .cube {
+  transform: rotateY(75deg) rotateX(0deg);
 }
